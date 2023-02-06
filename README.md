@@ -1,20 +1,26 @@
 # diff-mappings.nvim
-Neovim plugin that adds some simple mappings to make `git add --patch` more fun.
+Neovim plugin that adds some simple mappings to make `git add --edit` more fun.
 
 ## Mappings
 No default mappings, create them explicitly:
 ```lua
--- todo
+vim.keymap.set('n', '<LocalLeader>p', '<Plug>(diff-mappings-n-plus)', { buffer = true })
+vim.keymap.set('n', '<LocalLeader>m', '<Plug>(diff-mappings-n-minus)', { buffer = true })
+vim.keymap.set('n', '<LocalLeader>c', '<Plug>(diff-mappings-n-context)', { buffer = true })
+vim.keymap.set('x', '<LocalLeader>p', '<Plug>(diff-mappings-x-plus)', { buffer = true })
+vim.keymap.set('x', '<LocalLeader>m', '<Plug>(diff-mappings-x-minus)', { buffer = true })
+vim.keymap.set('x', '<LocalLeader>c', '<Plug>(diff-mappings-x-context)', { buffer = true })
+vim.keymap.set('n', ']]', '<Plug>(diff-mappings-next-change)', { buffer = true })
+vim.keymap.set('n', '[[', '<Plug>(diff-mappings-previous-change)', { buffer = true })
+vim.keymap.set('x', 'i+', '<Plug>(diff-mappings-x-i-plus)', { buffer = true })
+vim.keymap.set('x', 'i-', '<Plug>(diff-mappings-x-i-minus)', { buffer = true })
 ```
--- move those to doc
--- vim.keymap.set('x', '<LocalLeader>p', ':normal! 0r+<CR>', { buffer = true })
--- vim.keymap.set('x', '<LocalLeader>m', ':normal! 0r-<CR>', { buffer = true })
--- vim.keymap.set('x', '<LocalLeader>c', ':normal! 0r <CR>', { buffer = true })
-
-
 
 ## Usage
-todo
+Use `<Plug>(diff-mappings-?-?)` to change the current line/the selected lines to `+`/`-`/` `.  
+Use `<Plug>(diff-mappings-next/previous-change)` to jump to the next or previous block of lines prefixed with `+` or `-`.  
+Use `<Plug>(diff-mappings-x-i-plus/minus)` to select the current or next block of `+` or `-` lines.
 
 ## Requirements
-Developed and tested on Neovim `0.8.1`.
+Developed and tested on Neovim `0.8.1`.  
+Requires [vim-repeat](https://github.com/tpope/vim-repeat).
