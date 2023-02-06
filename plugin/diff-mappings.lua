@@ -40,21 +40,21 @@ vim.keymap.set('x', '<Plug>(diff-mappings-x-context)',function()
     vim.fn.winrestview(view)
 end, { buffer = true })
 
-vim.keymap.set('n', '<Plug>(diff-mappings-mappings-next-change)', function()
+vim.keymap.set('n', '<Plug>(diff-mappings-next-change)', function()
     local save_cursor = vim.fn.getcurpos()
     vim.fn.search([==[\v^[^+-]]==], 'cW')
     local line = vim.fn.search([==[\v^(\+|\-)]==], 'cW')
     if line == 0 then vim.fn.setpos('.', save_cursor) end
 end, { buffer = true, desc = "Go to next line starting with '+' or '-'" })
 
-vim.keymap.set('n', '<Plug>(diff-mappings-mappings-previous-change)', function()
+vim.keymap.set('n', '<Plug>(diff-mappings-previous-change)', function()
     local save_cursor = vim.fn.getcurpos()
     vim.fn.search([==[\v^[^+-]]==], 'bcW')
     local line = vim.fn.search([==[\v^(\+|\-)]==], 'bcW')
     if line == 0 then vim.fn.setpos('.', save_cursor) end
 end, { buffer = true, desc = "Go to previous line starting with '+' or '-'" })
 
-vim.keymap.set('x', '<Plug>(diff-mappings-mappings-x-i-plus)', function()
+vim.keymap.set('x', '<Plug>(diff-mappings-x-i-plus)', function()
     vim.cmd([[execute "normal! \<Esc>"]])
     local match_last_line = vim.fn.search([==[\v^\+\ze.*\n^[^+]]==], 'cW')
     if match_last_line == 0 then
@@ -66,7 +66,7 @@ vim.keymap.set('x', '<Plug>(diff-mappings-mappings-x-i-plus)', function()
     end
 end, { buffer = true, desc = "Select current or next block of contiguous '+' lines" })
 
-vim.keymap.set('x', '<Plug>(diff-mappings-mappings-x-i-minus)', function()
+vim.keymap.set('x', '<Plug>(diff-mappings-x-i-minus)', function()
     vim.cmd([[execute "normal! \<Esc>"]])
     local match_last_line = vim.fn.search([==[\v^\-\ze.*\n^[^-]]==], 'cW')
     if match_last_line == 0 then
