@@ -17,7 +17,7 @@ vim.keymap.set('x', 'i-', '<Plug>(diff-mappings-x-i-minus)', { buffer = true })
 ```
 
 ## Usage
-Use `<Plug>(diff-mappings-?-?)` to change the current line/the selected lines to `+`/`-`/` `.  
+Use `<Plug>(diff-mappings-[n|x]-[plus|minus|context])` to change the current line/the selected lines to `+`/`-`/` `.  
 Use `<Plug>(diff-mappings-next/previous-change)` to jump to the next or previous block of lines prefixed with `+` or `-`.  
 Use `<Plug>(diff-mappings-x-i-plus/minus)` to select the current or next block of `+` or `-` lines.
 
