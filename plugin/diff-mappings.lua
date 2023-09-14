@@ -1,20 +1,41 @@
-vim.keymap.set('n', '<Plug>(diff-mappings-n-plus)', function()
-    vim.cmd([[keeppatterns substitute/\v^./+/e]])
-    vim.cmd([[normal! ``]])
-    vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>(diff-mappings-n-plus)', true, false, true))
-end, { buffer = true, desc = "Replace first column of current line with '+'" })
+-- This should be doable with lua functions some day, 
+-- but so far I couldn't find a working technique for making these repeatable.
+-- So, more vimscript it is...
+vim.cmd([[
+    function! s:diff_mappings_n_plus()
+        function! s:inner(...) closure abort
+            keeppatterns substitute/\v^./+/e
+            normal! ``
+        endfunction
+        let &opfunc=get(funcref('s:inner'), 'name')
+        return 'g@l'
+    endfunction
+    nnoremap <silent><expr> <Plug>(diff-mappings-n-plus) <sid>diff_mappings_n_plus()
+]])
 
-vim.keymap.set('n', '<Plug>(diff-mappings-n-minus)', function()
-    vim.cmd([[keeppatterns substitute/\v^./-/e]])
-    vim.cmd([[normal! ``]])
-    vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>(diff-mappings-n-minus)', true, false, true))
-end, { buffer = true, desc = "Replace first column of current line with '-'" })
+vim.cmd([[
+    function! s:diff_mappings_n_minus()
+        function! s:inner(...) closure abort
+            keeppatterns substitute/\v^./-/e
+            normal! ``
+        endfunction
+        let &opfunc=get(funcref('s:inner'), 'name')
+        return 'g@l'
+    endfunction
+    nnoremap <silent><expr> <Plug>(diff-mappings-n-minus) <sid>diff_mappings_n_minus()
+]])
 
-vim.keymap.set('n', '<Plug>(diff-mappings-n-context)', function()
-    vim.cmd([[keeppatterns substitute/\v^./ /e]])
-    vim.cmd([[normal! ``]])
-    vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>(diff-mappings-n-context)', true, false, true))
-end, { buffer = true, desc = "Replace first column of current line with ' '" })
+vim.cmd([[
+    function! s:diff_mappings_n_context()
+        function! s:inner(...) closure abort
+            keeppatterns substitute/\v^./ /e
+            normal! ``
+        endfunction
+        let &opfunc=get(funcref('s:inner'), 'name')
+        return 'g@l'
+    endfunction
+    nnoremap <silent><expr> <Plug>(diff-mappings-n-context) <sid>diff_mappings_n_context()
+]])
 
 vim.keymap.set('x', '<Plug>(diff-mappings-x-plus)', function()
     local view = vim.fn.winsaveview()

@@ -17,10 +17,9 @@ vim.keymap.set('x', 'i-', '<Plug>(diff-mappings-x-i-minus)', { buffer = true })
 ```
 
 ## Usage
-Use `<Plug>(diff-mappings-[n|x]-[plus|minus|context])` to change the current line/the selected lines to `+`/`-`/` `.  
+Use `<Plug>(diff-mappings-[n|x]-[plus|minus|context])` to change the current line/the selected lines to `+`/`-`/` `. Dot-repeatable without dependency on vim-repeat.   
 Use `<Plug>(diff-mappings-next/previous-change)` to jump to the next or previous block of lines prefixed with `+` or `-`.  
 Use `<Plug>(diff-mappings-x-i-plus/minus)` to select the current or next block of `+` or `-` lines.
 
 ## Requirements
-Developed and tested on Neovim `0.8.1`.  
-Requires [vim-repeat](https://github.com/tpope/vim-repeat).
+Developed and tested on Neovim `0.9.1`.
